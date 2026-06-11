@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbot Cash — Instale chatbots. Cobre R$500 a R$2.000.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  --black: #070707;
+  --gray1: #0f0f0f;
+  --gray2: #161616;
+  --gray3: #202020;
+  --border: #2a2a2a;
+  --orange: #C43400;
+  --orange2: #d93b00;
+  --lime: #A8D400;
+  --white: #F0F0F0;
+  --muted: #555;
+  --muted2: #888;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── TICKER ── */
+.ticker {
+  background: var(--orange);
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-flex;
+  gap: 60px;
+  animation: ticker 18s linear infinite;
+}
+.ticker span {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #000;
+}
+@keyframes ticker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.nav-logo em { color: var(--orange); font-style: normal; }
+.nav-cta {
+  background: var(--orange);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--orange2); }
+
+/* ── HERO ── */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px 80px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 32px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--lime);
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(42px, 7vw, 80px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+.hero h1 .line2 { color: var(--orange); display: block; }
+.hero-sub {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--muted2);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 18px 36px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-hero:hover { background: var(--orange2); transform: translateY(-1px); }
+.btn-hero svg { width: 16px; height: 16px; fill: currentColor; }
+.hero-price {
+  font-size: 13px;
+  color: var(--muted);
+}
+.hero-price strong { color: var(--lime); font-size: 20px; font-weight: 500; }
+
+/* ── STATS ── */
+.stats {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.stat {
+  padding: 40px;
+  border-right: 1px solid var(--border);
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-num span { color: var(--orange); }
+.stat-label { font-size: 13px; color: var(--muted2); font-weight: 300; }
+
+/* ── SECTION BASE ── */
+.section { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+h2 em { color: var(--orange); font-style: normal; }
+
+/* ── PAIN ── */
+.pain-list {
+  list-style: none;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.pain-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--muted2);
+  transition: color 0.2s;
+}
+.pain-item:hover { color: var(--white); }
+.pain-item::before {
+  content: '—';
+  color: var(--border);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--gray2);
+  border-left: 3px solid var(--lime);
+  padding: 32px 36px;
+  margin: 48px 0;
+}
+.callout p {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--white);
+}
+.callout strong { color: var(--lime); font-weight: 500; }
+
+/* ── MODULES ── */
+.modules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 40px;
+}
+.module {
+  background: var(--gray1);
+  padding: 28px 32px;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, background 0.2s;
+  cursor: default;
+}
+.module:hover {
+  border-color: var(--orange);
+  background: var(--gray2);
+}
+.module-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.module h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.module p {
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.6;
+}
+.bonus-strip {
+  grid-column: 1 / -1;
+  background: var(--gray2);
+  border: 1px solid var(--lime);
+  padding: 28px 32px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.bonus-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.bonus-strip h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--lime);
+  margin-bottom: 4px;
+}
+.bonus-strip p { font-size: 13px; color: var(--muted2); }
+
+/* ── PROOF ── */
+.proof {
+  background: var(--gray1);
+  border: 1px solid var(--border);
+  padding: 40px;
+  margin-top: 40px;
+  position: relative;
+}
+.proof::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  left: 36px;
+  font-family: 'Syne', sans-serif;
+  font-size: 80px;
+  color: var(--orange);
+  line-height: 1;
+  opacity: 0.3;
+}
+.proof-text {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--white);
+  margin-bottom: 24px;
+  padding-top: 20px;
+}
+.proof-author {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+}
+
+/* ── FOR WHO ── */
+.for-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 40px;
+}
+.for-item {
+  background: var(--gray1);
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+  font-size: 14px;
+  color: var(--muted2);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: color 0.2s;
+}
+.for-item:hover { color: var(--white); }
+.for-item .check { color: var(--lime); font-weight: 700; flex-shrink: 0; }
+
+/* ── PRICING ── */
+.pricing-wrap {
+  margin-top: 48px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.pricing-badge {
+  position: absolute;
+  top: -14px;
+  left: 40px;
+  background: var(--orange);
+  color: #000;
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+}
+.pricing-inner {
+  padding: 48px 40px;
+}
+.pricing-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.price-block {}
+.price-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--white);
+}
+.price-value sup {
+  font-size: 28px;
+  vertical-align: super;
+  color: var(--muted2);
+}
+.price-note {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.includes li {
+  font-size: 14px;
+  color: var(--muted2);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.includes li::before {
+  content: '✓';
+  color: var(--lime);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.btn-buy {
+  display: block;
+  background: var(--orange);
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 22px 40px;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-buy:hover { background: var(--orange2); transform: translateY(-1px); }
+.buy-note {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 14px;
+  letter-spacing: 0.05em;
+  font-family: 'Inter', monospace;
+}
+
+/* ── FAQ ── */
+.faq { margin-top: 40px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.faq-a { font-size: 14px; color: var(--muted2); line-height: 1.7; }
+
+/* ── FINAL CTA ── */
+.final-cta {
+  border-top: 1px solid var(--border);
+  padding: 100px 40px;
+  text-align: center;
+}
+.final-cta h2 { margin-bottom: 16px; }
+.final-cta p {
+  font-size: 16px;
+  color: var(--muted2);
+  max-width: 440px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer p { font-size: 12px; color: var(--muted); }
+footer a { color: var(--orange); text-decoration: none; }
+
+/* ── DIVIDER ── */
+hr { border: none; border-top: 1px solid var(--border); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  nav { padding: 16px 20px; }
+  .hero { padding: 60px 20px 60px; }
+  .stats { grid-template-columns: 1fr; }
+  .stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .section { padding: 60px 20px; }
+  .modules { grid-template-columns: 1fr; }
+  .for-grid { grid-template-columns: 1fr; }
+  .pricing-inner { padding: 40px 24px; }
+  .pricing-top { flex-direction: column; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── WHATSAPP BTN ── */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  z-index: 999;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+}
+.whatsapp-btn svg { width: 28px; height: 28px; fill: #fff; }
+.whatsapp-tooltip {
+  position: fixed;
+  bottom: 36px;
+  right: 92px;
+  background: var(--gray2);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--muted2);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 998;
+}
+.whatsapp-btn:hover ~ .whatsapp-tooltip { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Chatbot Cash</span>
+    <span>★</span>
+    <span>Do zero ao primeiro cliente</span>
+    <span>★</span>
+    <span>R$500 a R$2.000 por instalação</span>
+    <span>★</span>
+    <span>Sem saber programar</span>
+    <span>★</span>
+    <span>Renda recorrente</span>
+    <span>★</span>
+    <span>Chatbot Cash</span>
+    <span>★</span>
+    <span>Do zero ao primeiro cliente</span>
+    <span>★</span>
+    <span>R$500 a R$2.000 por instalação</span>
+    <span>★</span>
+    <span>Sem saber programar</span>
+    <span>★</span>
+    <span>Renda recorrente</span>
+    <span>★</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">CHATBOT<em>CASH</em></div>
+  <a href="https://pay.liwify.com.br/ID4bOml" class="nav-cta">Comprar agora</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Mini-curso completo · Ioniqo</div>
+  <h1>
+    Instale chatbots.<br>
+    <span class="line2">Cobre R$500<br>a R$2.000.</span>
+  </h1>
+  <p class="hero-sub">Em negócios locais da sua cidade. Sem saber programar. Sem investimento inicial. Do zero ao primeiro cliente em menos de 7 dias.</p>
+  <div class="hero-actions">
+    <a href="https://pay.liwify.com.br/ID4bOml" class="btn-hero">
+      Quero começar agora
+      <svg viewBox="0 0 20 20"><path d="M10 3l7 7-7 7M3 10h14"/></svg>
+    </a>
+    <div class="hero-price">por apenas <strong>R$67</strong></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat">
+    <div class="stat-num">15<span>M+</span></div>
+    <div class="stat-label">pequenos negócios no Brasil sem automação</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">R$<span>2k</span></div>
+    <div class="stat-label">ticket máximo por instalação</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">7<span>dias</span></div>
+    <div class="stat-label">para fechar o primeiro cliente</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- DOR -->
+<section class="section reveal">
+  <div class="section-label">O problema</div>
+  <h2>Você quer renda extra real.<br><em>Não mais teoria.</em></h2>
+  <ul class="pain-list">
+    <li class="pain-item">Tentou vender algo mas não tinha diferencial claro</li>
+    <li class="pain-item">Viu o mercado digital crescer mas ficou de fora</li>
+    <li class="pain-item">Não quer depender de seguidores ou de viralizar</li>
+    <li class="pain-item">Quer renda previsível — não um golpe de sorte</li>
+  </ul>
+</section>
+
+<hr>
+
+<!-- SOLUÇÃO -->
+<section class="section reveal">
+  <div class="section-label">A oportunidade</div>
+  <h2>O mercado já quer.<br><em>Falta quem saiba entregar.</em></h2>
+  <p style="color: var(--muted2); font-weight: 300; font-size: 16px; line-height: 1.8; max-width: 600px;">Mais de 15 milhões de pequenas empresas no Brasil usam o WhatsApp para atender clientes — de forma 100% manual. Elas precisam de automação. Você aprende a entregar. Elas pagam.</p>
+  <div class="callout">
+    <p>Eu fechei meu primeiro cliente de chatbot cobrando <strong>setup + mensalidade</strong>. O bot está em produção. A mensalidade cai todo mês. Esse material documenta exatamente como eu fiz — do zero.</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- MÓDULOS -->
+<section class="section reveal">
+  <div class="section-label">O que você recebe</div>
+  <h2>8 módulos.<br><em>Do zero ao cliente pago.</em></h2>
+  <div class="modules">
+    <div class="module">
+      <div class="module-num">01</div>
+      <h3>O Mercado Invisível</h3>
+      <p>Por que a demanda existe e como encontrar os melhores clientes na sua cidade hoje.</p>
+    </div>
+    <div class="module">
+      <div class="module-num">02</div>
+      <h3>Entendendo Chatbots do Zero</h3>
+      <p>O que é, como funciona no WhatsApp e qual tipo construir primeiro para resultado rápido.</p>
+    </div>
+    <div class="module">
+      <div class="module-num">03</div>
+      <h3>Montando Seu Primeiro Bot</h3>
+      <p>Passo a passo completo: ferramentas, configuração, testes e deploy em 6 etapas.</p>
+    </div>
+    <div class="module">
+      <div class="module-num">04</div>
+      <h3>Precificação e Proposta</h3>
+      <p>Quanto cobrar, como justificar o valor e o que incluir no contrato.</p>
+    </div>
+    <div class="module">
+      <div class="module-num">05</div>
+      <h3>O Script de Fechamento</h3>
+      <p>Como abordar, o que falar e como responder as 4 objeções mais comuns.</p>
+    </div>
+    <div class="module">
+      <div class="module-num">06</div>
+      <h3>Entregando com Qualidade</h3>
+      <p>Do briefing ao go live — como garantir satisfação e renovação todo mês.</p>
+    </div>
+    <div class="module">
+      <div class="module-num">07</div>
+      <h3>Construindo Recorrência</h3>
+      <p>Como transformar cada cliente em renda mensal previsível.</p>
+    </div>
+    <div class="module">
+      <div class="module-num">08</div>
+      <h3>Atraindo Clientes</h3>
+      <p>Prospecção ativa, Instagram e tráfego pago — as 3 fontes que funcionam.</p>
+    </div>
+    <div class="bonus-strip">
+      <div class="bonus-icon">★</div>
+      <div>
+        <h3>Kit Completo de Bônus</h3>
+        <p>Modelo de proposta comercial pronta · Checklist de entrega com 4 fases · 5 scripts de abordagem personalizáveis</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- PROVA -->
+<section class="section reveal">
+  <div class="section-label">Case real</div>
+  <h2>Não é teoria.<br><em>É o que eu vivi.</em></h2>
+  <div class="proof">
+    <p class="proof-text">Quando ofereci o primeiro chatbot para um negócio local, a resposta foi: "quanto custa?" — não "o que é isso?". O mercado já quer. Falta quem saiba entregar. É isso que o Chatbot Cash ensina.</p>
+    <div class="proof-author">Gio · Fundador da Ioniqo · Primeiro cliente fechado, bot em produção</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- PRA QUEM -->
+<section class="section reveal">
+  <div class="section-label">Pra quem é</div>
+  <h2>Esse método é pra você<br><em>se você quer executar.</em></h2>
+  <div class="for-grid">
+    <div class="for-item"><span class="check">✓</span> Quer renda previsível, não dependente de viral</div>
+    <div class="for-item"><span class="check">✓</span> Não sabe programar mas quer trabalhar com tecnologia</div>
+    <div class="for-item"><span class="check">✓</span> Quer um serviço com demanda real e mercado gigante</div>
+    <div class="for-item"><span class="check">✓</span> Está disposto a aprender uma ferramenta nova</div>
+    <div class="for-item"><span class="check">✓</span> Quer recorrência — não só venda única</div>
+    <div class="for-item"><span class="check">✓</span> Topa fazer a primeira abordagem essa semana</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- PRICING -->
+<section class="section reveal" id="comprar">
+  <div class="section-label">Investimento</div>
+  <h2>Menos que um almoço.<br><em>Uma habilidade pra vida.</em></h2>
+  <div class="pricing-wrap">
+    <div class="pricing-badge">Acesso imediato</div>
+    <div class="pricing-inner">
+      <div class="pricing-top">
+        <div class="price-block">
+          <div class="price-value"><sup>R$</sup>67</div>
+          <div class="price-note">pagamento único · acesso vitalício</div>
+        </div>
+      </div>
+      <ul class="includes">
+        <li>8 módulos completos com passo a passo em cada um</li>
+        <li>Modelo de proposta comercial pronta para usar</li>
+        <li>Checklist de entrega com 4 fases</li>
+        <li>5 scripts de abordagem personalizáveis</li>
+        <li>Tabela de precificação de referência</li>
+        <li>Acesso vitalício ao material</li>
+      </ul>
+      <a href="https://pay.liwify.com.br/ID4bOml" class="btn-buy">Garantir meu acesso por R$67 →</a>
+      <p class="buy-note">Pagamento seguro · Entrega imediata · Acesso via Kiwify</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- FAQ -->
+<section class="section reveal">
+  <div class="section-label">Dúvidas</div>
+  <h2>Perguntas<br><em>frequentes.</em></h2>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">Preciso saber programar?</div>
+      <div class="faq-a">Não. O método usa ferramentas no-code que qualquer pessoa aprende em horas. Se você sabe usar WhatsApp, já tem o básico.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Quanto tempo leva para fechar o primeiro cliente?</div>
+      <div class="faq-a">Depende da sua execução, mas o script de abordagem foi feito para funcionar em 7 dias ou menos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Precisa ter CNPJ ou empresa aberta?</div>
+      <div class="faq-a">Não. Você pode começar como pessoa física, receber por PIX e formalizar depois se quiser.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Como recebo o material?</div>
+      <div class="faq-a">Imediatamente após o pagamento, você recebe acesso à área de membros no e-mail cadastrado.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">E se eu não gostar?</div>
+      <div class="faq-a">Me chama no Instagram @ioni.qo e a gente resolve. O material é direto e sem enrolação.</div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- FINAL CTA -->
+<div class="final-cta reveal">
+  <h2>O mercado não espera.<br><em>Você também não deveria.</em></h2>
+  <p>Tem um negócio na sua cidade agora perdendo cliente porque não responde o WhatsApp. Você pode ser quem resolve isso.</p>
+  <a href="https://pay.liwify.com.br/ID4bOml" class="btn-hero" style="display:inline-flex;">
+    Quero o método por R$67
+    <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M10 3l7 7-7 7M3 10h14"/></svg>
+  </a>
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5511915412121?text=Oi%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20o%20Chatbot%20Cash" target="_blank" class="whatsapp-btn" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="whatsapp-tooltip">Dúvidas? Fala comigo</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© Ioniqo · Chatbot Cash · Todos os direitos reservados</p>
+  <p><a href="https://instagram.com/ioni.qo">@ioni.qo</a></p>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
